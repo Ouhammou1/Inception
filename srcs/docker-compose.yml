@@ -1,7 +1,7 @@
 
 services:
   nginx:
-    image: nginx:latest
+    image:  requirements/nginx
     container_name: my_nginx
     ports:
       - "8080:80"
