@@ -6,7 +6,7 @@ FILE = srcs/docker-compose.yml
 all: up
 
 up:
-	$(DC) -f $(FILE) up -d
+	$(DC) -f $(FILE) up #-d
 
 down:
 	$(DC) -f $(FILE) down
