@@ -1,15 +1,30 @@
 
 services:
   nginx:
+    restart: always
     build:  requirements/nginx
     container_name: my_nginx
     ports:
       - "443:443"
+    volumes:
+      - wp_data:/var/www/html
     networks:
       - inception
-    restart: always
   
+  wordpress:
+    restart: always
+    build: requirements/wordpress
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - inception
+
+
 
 networks:
   inception:
-    
+    driver: bridge
+
+volumes:
+  wp_data:
+  

@@ -1,4 +1,4 @@
-NAME = nginx-compose
+NAME = inception
 
 DC = docker compose
 FILE = srcs/docker-compose.yml
@@ -7,6 +7,9 @@ all: up
 
 up:
 	$(DC) -f $(FILE) up #-d
+
+build:
+	$(DC) -f $(FILE) up --build -d
 
 down:
 	$(DC) -f $(FILE) down
@@ -30,6 +33,4 @@ ps:
 clean:
 	$(DC) -f $(FILE) down -v
 
-re: clean up
-
-.PHONY: all up down start stop restart logs ps clean re
+re: clean build
