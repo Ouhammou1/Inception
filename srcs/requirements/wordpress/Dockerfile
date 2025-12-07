@@ -24,7 +24,11 @@ RUN curl -O https://wordpress.org/latest.tar.gz && \
     rm latest.tar.gz && \
     chown -R www-data:www-data /var/www/html
 
-RUN sed -i 's|listen = .*|listen = 9000|' /etc/php/*/fpm/pool.d/www.conf
+
+
+COPY conf/wp-config.php /var/www/html/wordpress/wp-config.php
+
+# RUN sed -i 's|listen = .*|listen = 9000|' /etc/php/*/fpm/pool.d/www.conf
 
 # RUN mkdir -p /run/php
 

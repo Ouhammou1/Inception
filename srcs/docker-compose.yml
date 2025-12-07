@@ -14,12 +14,33 @@ services:
   wordpress:
     restart: always
     build: requirements/wordpress
+    container_name: wordpress
     volumes:
       - wp_data:/var/www/html
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: mariadb
+    depends_on:
+      - mariadb
     networks:
       - inception
 
 
+  mariadb:
+    restart: always
+    build: requirements/mariadb
+    container_name: mariadb
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    networks:
+      - inception
 
 networks:
   inception:
@@ -27,4 +48,7 @@ networks:
 
 volumes:
   wp_data:
-  
+  db_data:
+
+# volumes:
+#     driver: local
