@@ -3,7 +3,16 @@ NAME = inception
 DC = docker compose
 FILE = srcs/docker-compose.yml
 
-all: up
+DATA_DIR = /home/bouhammo/data
+
+WP_DIR = $(DATA_DIR)/wp
+DB_DIR = $(DATA_DIR)/maria
+
+all: prepare up
+
+prepare:
+	@mkdir -p $(WP_DIR)
+	@mkdir -p $(DB_DIR)
 
 up:
 	$(DC) -f $(FILE) up #-d
