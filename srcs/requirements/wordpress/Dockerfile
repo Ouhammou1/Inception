@@ -34,4 +34,5 @@ COPY conf/wp-config.php /var/www/html/wordpress/wp-config.php
 
 EXPOSE 9000
 
-CMD ["sh", "-c", "mkdir -p /run/php && php-fpm7.4 -F"]
+CMD ["php-fpm7.4", "-F"]
+
