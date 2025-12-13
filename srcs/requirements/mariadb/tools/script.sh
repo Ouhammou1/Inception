@@ -1,68 +1,35 @@
-#!/bin/bash
-
-# set -e
-
-# # Ensure correct permissions for the mysqld runtime directory
-# mkdir -p /run/mysqld
-# chown -R mysql:mysql /run/mysqld
-
-# # Initialize MariaDB data directory if empty
-# if [ ! -d "/var/lib/mysql/mysql" ]; then
-#     echo "Initializing MariaDB data directory..."
-#     mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
-# fi
-
-# # Start MariaDB temporarily (safe mode)
-# echo "Starting MariaDB in bootstrap mode..."
-# mysqld --bootstrap --user=mysql <<-EOF
-# USE mysql;
-
-# FLUSH PRIVILEGES;
-
-# CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
-
-# CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
-# GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
-
-# ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-
-# FLUSH PRIVILEGES;
-# EOF
-
-# echo "MariaDB configured successfully."
-
-# # Start MariaDB normally (foreground mode)
-# exec mysqld --user=mysql
-
-
+#!/bin/sh
 set -e
 
-# Ensure correct permissions for the mysqld runtime directory
-mkdir -p /run/mysqld
+# Ensure correct permissions
+chown -R mysql:mysql /var/lib/mysql
 chown -R mysql:mysql /run/mysqld
 
-# Initialize MariaDB data directory if empty
+# Initialize database directory if empty
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Initializing MariaDB data directory..."
-    mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
+    mysql_install_db --user=mysql --datadir=/var/lib/mysql
 fi
 
-echo "Starting MariaDB in bootstrap mode..."
-mysqld --bootstrap --user=mysql <<-EOF
-USE mysql;
+# Start MariaDB in background (NO skip-grant-tables)
+mysqld --user=mysql --bind-address=0.0.0.0 &
+pid="$!"
 
-FLUSH PRIVILEGES;
+# Wait for MariaDB to be ready
+echo "Waiting for MariaDB..."
+until mysqladmin ping --silent; do
+    sleep 1
+done
 
-CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};
+echo "Configuring database..."
 
+mysql -u root <<EOF
+CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
 CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
-GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';
-
+GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-
 FLUSH PRIVILEGES;
 EOF
 
-echo "MariaDB configured successfully."
-
-exec mysqld --user=mysql
+# Bring MariaDB back to foreground
+wait "$pid"

@@ -3,7 +3,7 @@ services:
   nginx:
     restart: always
     build:  requirements/nginx
-    container_name: my_nginx
+    container_name: nginx
     ports:
       - "443:443"
     volumes:

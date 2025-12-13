@@ -13,5 +13,6 @@ RUN openssl req -x509 -nodes -days 365 \
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
+# COPY conf/index.html /etc/nginx/index.html
 
 CMD ["nginx", "-g" , "daemon off;"]

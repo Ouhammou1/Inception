@@ -5,20 +5,21 @@ FILE = srcs/docker-compose.yml
 
 DATA_DIR = /home/bouhammo/data
 
-WP_DIR = $(DATA_DIR)/wp
-DB_DIR = $(DATA_DIR)/maria
+create_volumes:
+	mkdir -p $(DATA_DIR)/wp
+	mkdir -p $(DATA_DIR)/maria
+	sudo chown -R 1000:1000 $(DATA_DIR)/wp
+	sudo chown -R 999:999 $(DATA_DIR)/maria
+	sudo chmod -R 770 $(DATA_DIR)/maria
 
-all: prepare up
+all: create_volumes up
 
-prepare:
-	@mkdir -p $(WP_DIR)
-	@mkdir -p $(DB_DIR)
 
 up:
 	$(DC) -f $(FILE) up #-d
 
 build:
-	$(DC) -f $(FILE) up --build -d
+	$(DC) -f $(FILE) up --build #-d
 
 down:
 	$(DC) -f $(FILE) down
@@ -41,5 +42,8 @@ ps:
 
 clean:
 	$(DC) -f $(FILE) down -v
+	@sudo rm -rf $(WP_DIR)
+	@sudo rm -rf $(DB_DIR)
+
 
 re: clean build

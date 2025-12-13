@@ -1,38 +1,30 @@
-FROM  debian:bullseye
+FROM debian:bullseye
 
-
-RUN  apt update && apt install -y \
-    php-fpm \
-    php-mysql \
-    php-curl \
-    php-gd \
-    php-intl \
-    php-mbstring \
-    php-soap \
-    php-xml \
-    php-xmlrpc \
-    php-zip \
+# Install PHP and required extensions
+RUN apt update && apt install -y \
+    php7.4-fpm \
+    php7.4-mysql \
+    php7.4-curl \
+    php7.4-gd \
+    php7.4-intl \
+    php7.4-mbstring \
     curl \
     mariadb-client \
-    tar \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR  /var/www/html
+# Force PHP-FPM to listen on TCP 9000 (needed for Nginx)
+RUN sed -i 's|listen = .*|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
 
-RUN curl -O https://wordpress.org/latest.tar.gz && \
-    tar -xzf latest.tar.gz && \
-    rm latest.tar.gz && \
-    chown -R www-data:www-data /var/www/html
+# Create runtime directory
+RUN mkdir -p /run/php
 
+# Set working directory (this is the VOLUME)
+WORKDIR /var/www/html
 
+# Copy entrypoint script
+COPY tools/script.sh /script.sh
+RUN chmod +x /script.sh
 
-COPY conf/wp-config.php /var/www/html/wordpress/wp-config.php
-
-# RUN sed -i 's|listen = .*|listen = 9000|' /etc/php/*/fpm/pool.d/www.conf
-
-# RUN mkdir -p /run/php
-
-EXPOSE 9000
-
+# Start WordPress installer then PHP-FPM
+ENTRYPOINT ["/script.sh"]
 CMD ["php-fpm7.4", "-F"]
-
