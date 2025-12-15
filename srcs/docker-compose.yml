@@ -13,6 +13,7 @@ services:
     depends_on:
       - wordpress
   
+
   wordpress:
     restart: always
     build: requirements/wordpress
@@ -24,6 +25,13 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: mariadb
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      WP_ADMIN_USER: ${WP_ADMIN_USER}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+      WP_USER: ${WP_USER}
+      WP_USER_EMAIL: ${WP_USER_EMAIL}
+      WP_USER_PASSWORD: ${WP_USER_PASSWORD}
     depends_on:
       - mariadb
     networks:

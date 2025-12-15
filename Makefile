@@ -10,7 +10,6 @@ create_volumes:
 	sudo mkdir -p $(DATA_DIR)/maria
 	sudo chown -R 1000:1000 $(DATA_DIR)/wp
 	sudo chown -R 999:999 $(DATA_DIR)/maria
-# sudo chmod -R 770 $(DATA_DIR)/maria
 
 all: create_volumes up
 

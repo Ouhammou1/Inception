@@ -25,9 +25,7 @@ for i in $(seq 1 30); do
     sleep 2
 done
 
-sleep 3
-
-# 3. Create wp-config.php
+# 3. Create wp-config.php if not exists
 if [ ! -f wp-config.php ]; then
     echo "Creating wp-config.php..."
     wp config create \
@@ -40,7 +38,7 @@ if [ ! -f wp-config.php ]; then
     echo "wp-config.php created"
 fi
 
-# 4. Install WordPress
+# 4. Install WordPress only if not already installed
 if ! wp core is-installed --allow-root 2>/dev/null; then
     echo "Installing WordPress..."
     wp core install \
@@ -52,17 +50,23 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
         --admin_email="$WP_ADMIN_EMAIL" \
         --skip-email
     echo "WordPress installed"
+else
+    echo "WordPress is already installed"
 fi
 
-# 5. Create second user
-if ! wp user get "$WP_USER" --allow-root >/dev/null 2>&1; then
-    echo "Creating user: $WP_USER"
-    wp user create \
-        "$WP_USER" "$WP_USER_EMAIL" \
-        --user_pass="$WP_USER_PASSWORD" \
-        --role=subscriber \
-        --allow-root
-    echo "User created"
+# 5. Create second user if not exists
+if [ -n "$WP_USER" ] && [ -n "$WP_USER_EMAIL" ] && [ -n "$WP_USER_PASSWORD" ]; then
+    if ! wp user get "$WP_USER" --allow-root >/dev/null 2>&1; then
+        echo "Creating user: $WP_USER"
+        wp user create \
+            "$WP_USER" "$WP_USER_EMAIL" \
+            --user_pass="$WP_USER_PASSWORD" \
+            --role=subscriber \
+            --allow-root
+        echo "User created"
+    else
+        echo "User $WP_USER already exists"
+    fi
 fi
 
 echo "=== WordPress ready ==="
