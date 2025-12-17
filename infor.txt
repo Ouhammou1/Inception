@@ -1,1 +1,5 @@
 https://10.11.247.188:443
+
+
+
+https://10.11.247.188/wp-login.php?redirect_to=https%3A%2F%2F10.11.247.188%2Fwp-admin%2F&reauth=1

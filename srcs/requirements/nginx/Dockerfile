@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:12
 
 RUN apt update && apt install -y nginx openssl
 
@@ -13,6 +13,9 @@ RUN openssl req -x509 -nodes -days 365 \
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-# COPY conf/index.html /etc/nginx/index.html
+RUN rm -rf /var/www/html/*
+COPY conf/index.html /var/www/html/index.html
+COPY conf/index.html /etc/nginx/index.html
+
 
 CMD ["nginx", "-g" , "daemon off;"]
