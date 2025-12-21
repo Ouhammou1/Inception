@@ -1,21 +1,24 @@
 <?php
 
-define( 'DB_NAME',     getenv('MYSQL_DATABASE') );
-define( 'DB_USER',     getenv('MYSQL_USER') );
-define( 'DB_PASSWORD', getenv('MYSQL_PASSWORD') );
-define( 'DB_HOST',     getenv('MYSQL_HOST') );
 
-define( 'DB_CHARSET', 'utf8' );
-define( 'DB_COLLATE', '' );
+define('DB_NAME' , getenv('MYSQL_DATABASE'));
+define('DB_USER' , getenv('MYSQL_USER'));
+define('DB_PASSWORD' , getenv('MYSQL_PASSWORD'));
+define('DB_HOST' , getenv('MYSQL_HOST'));
 
-$table_prefix = 'wp_';
 
-define( 'WP_DEBUG', true );
+define('DB_CHARSET'. 'utf8');
+define('DB_COLLATE'. '');
 
-/* Set WordPress root directory */
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', __DIR__ . '/' );
+$table_prefic = 'wp_';
+
+define('WP_DEBUG', false);
+
+
+if( !define('ABSPATH'))
+{
+    define('ABSPATH' , __DIR__ . '/');
 }
 
-/* Load WordPress settings */
 require_once ABSPATH . 'wp-settings.php';
+

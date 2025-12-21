@@ -5,6 +5,21 @@ FILE = srcs/docker-compose.yml
 
 DATA_DIR = /home/bouhammo/data
 
+HOSTNAME = bouhammo.42.fr
+HOSTS_LINE = 127.0.0.1   $(HOSTNAME)
+
+
+all: add_host create_volumes   up 
+
+add_host:
+	@if grep -q "$(HOSTNAME)" /etc/hosts; then \
+		echo "$(HOSTNAME) already exists in /etc/hosts"; \
+	else \
+		echo "$(HOSTS_LINE)" | sudo tee -a /etc/hosts > /dev/null; \
+		echo "$(HOSTNAME) added to /etc/hosts"; \
+	fi
+
+
 create_volumes:
 	sudo mkdir -p $(DATA_DIR)/wp
 	sudo mkdir -p $(DATA_DIR)/maria
@@ -12,14 +27,13 @@ create_volumes:
 	sudo chown -R 999:999 $(DATA_DIR)/maria
 	sudo chmod -R 755 $(DATA_DIR)/wp
 
-all: create_volumes up
 
 
 up:
-	$(DC) -f $(FILE) up #-d
+	$(DC) -f $(FILE) up -d
 
 build:
-	$(DC) -f $(FILE) up --build -d
+	$(DC) -f $(FILE) up --build #-d
 
 down:
 	$(DC) -f $(FILE) down -v

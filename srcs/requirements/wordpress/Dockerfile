@@ -1,13 +1,13 @@
-FROM debian:bullseye
+FROM debian:12
 
-# Install PHP and required extensions
+# Install PHP 8.2 and required extensions
 RUN apt update && apt install -y \
-    php7.4-fpm \
-    php7.4-mysql \
-    php7.4-curl \
-    php7.4-gd \
-    php7.4-intl \
-    php7.4-mbstring \
+    php8.2-fpm \
+    php8.2-mysql \
+    php8.2-curl \
+    php8.2-gd \
+    php8.2-intl \
+    php8.2-mbstring \
     curl \
     mariadb-client \
     ca-certificates \
@@ -18,8 +18,8 @@ RUN curl -fsSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-
     -o /usr/local/bin/wp \
     && chmod +x /usr/local/bin/wp
 
-# PHP-FPM config
-RUN sed -i 's|listen = .*|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
+# PHP-FPM config - Update the path for PHP 8.2
+RUN sed -i 's|listen = .*|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf
 
 RUN mkdir -p /run/php
 
@@ -29,4 +29,4 @@ COPY tools/script.sh /script.sh
 RUN chmod +x /script.sh
 
 ENTRYPOINT ["/script.sh"]
-CMD ["php-fpm", "-F"]
+CMD ["php-fpm8.2", "-F"]  # Changed from php-fpm to php-fpm8.2
