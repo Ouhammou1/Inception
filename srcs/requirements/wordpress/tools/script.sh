@@ -8,7 +8,7 @@ cd /var/www/html || exit 1
 # 1. Download WordPress if not exists
 if [ ! -f wp-includes/version.php ]; then
     echo "Downloading WordPress..."
-    rm -rf /var/www/html/*
+    # rm -rf /var/www/html/*
     curl -s https://wordpress.org/latest.tar.gz | tar -xz --strip-components=1
     chown -R www-data:www-data /var/www/html
     echo "WordPress downloaded"
@@ -25,7 +25,7 @@ for i in $(seq 1 30); do
     sleep 2
 done
 
-# 3. Create wp-config.php if not exists
+3. Create wp-config.php if not exists
 if [ ! -f wp-config.php ]; then
     echo "Creating wp-config.php..."
     wp config create \

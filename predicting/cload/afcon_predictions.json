@@ -1,0 +1,217 @@
+{
+  "match_1": {
+    "match": "Congo DR vs Benin",
+    "predicted_score": "1-0",
+    "confidence": 19.66,
+    "expected_goals": {
+      "home": 1.32,
+      "away": 0.73
+    },
+    "outcomes": {
+      "home_win": 18.46,
+      "draw": 32.18,
+      "away_win": 49.36
+    },
+    "top_scores": [
+      {
+        "score": "1-0",
+        "probability": 19.65662870624581,
+        "cumulative": 19.65662870624581
+      },
+      {
+        "score": "1-1",
+        "probability": 15.140022610185397,
+        "cumulative": 34.79665131643121
+      },
+      {
+        "score": "0-0",
+        "probability": 14.401419946882305,
+        "cumulative": 49.198071263313516
+      },
+      {
+        "score": "2-0",
+        "probability": 10.587930615660003,
+        "cumulative": 59.78600187897352
+      },
+      {
+        "score": "0-1",
+        "probability": 9.709407367188371,
+        "cumulative": 69.4954092461619
+      },
+      {
+        "score": "2-1",
+        "probability": 7.637046230918121,
+        "cumulative": 77.13245547708001
+      },
+      {
+        "score": "3-0",
+        "probability": 4.272736283895383,
+        "cumulative": 81.4051917609754
+      },
+      {
+        "score": "1-2",
+        "probability": 3.7077601777225633,
+        "cumulative": 85.11295193869796
+      },
+      {
+        "score": "3-1",
+        "probability": 3.1278386215070864,
+        "cumulative": 88.24079056020504
+      },
+      {
+        "score": "0-2",
+        "probability": 2.774889216463753,
+        "cumulative": 91.01567977666879
+      },
+      {
+        "score": "2-2",
+        "probability": 2.437539632844441,
+        "cumulative": 93.45321940951322
+      },
+      {
+        "score": "4-0",
+        "probability": 1.4330527713154781,
+        "cumulative": 94.8862721808287
+      },
+      {
+        "score": "1-3",
+        "probability": 0.8595367859155476,
+        "cumulative": 95.74580896674425
+      },
+      {
+        "score": "3-2",
+        "probability": 0.8060020302534835,
+        "cumulative": 96.55181099699773
+      },
+      {
+        "score": "4-1",
+        "probability": 0.7834924597742795,
+        "cumulative": 97.33530345677201
+      }
+    ],
+    "team_data": {
+      "home": {
+        "team": "Congo DR",
+        "coach": "S\u00e9bastien Desabre",
+        "key_player": "Yoane Wissa",
+        "style": "Physical, direct"
+      },
+      "away": {
+        "team": "Benin",
+        "coach": "Gernot Rohr",
+        "key_player": "Steve Mouni\u00e9",
+        "style": "Defensive, counter-attack"
+      }
+    }
+  },
+  "match_2": {
+    "match": "Senegal vs Botswana",
+    "predicted_score": "1-0",
+    "confidence": 24.3,
+    "expected_goals": {
+      "home": 1.53,
+      "away": 0.49
+    },
+    "outcomes": {
+      "home_win": 9.87,
+      "draw": 28.03,
+      "away_win": 62.1
+    },
+    "top_scores": [
+      {
+        "score": "1-0",
+        "probability": 24.29630291733298,
+        "cumulative": 24.29630291733298
+      },
+      {
+        "score": "0-0",
+        "probability": 15.498044229338825,
+        "cumulative": 39.794347146671804
+      },
+      {
+        "score": "2-0",
+        "probability": 15.315980108225947,
+        "cumulative": 55.110327254897754
+      },
+      {
+        "score": "1-1",
+        "probability": 11.130558885203508,
+        "cumulative": 66.24088614010127
+      },
+      {
+        "score": "3-0",
+        "probability": 7.235006676213135,
+        "cumulative": 73.4758928163144
+      },
+      {
+        "score": "2-1",
+        "probability": 6.476680115014638,
+        "cumulative": 79.95257293132903
+      },
+      {
+        "score": "0-1",
+        "probability": 6.297456498513583,
+        "cumulative": 86.25002942984261
+      },
+      {
+        "score": "3-1",
+        "probability": 3.0563898182871494,
+        "cumulative": 89.30641924812976
+      },
+      {
+        "score": "4-0",
+        "probability": 2.841052591142469,
+        "cumulative": 92.14747183927223
+      },
+      {
+        "score": "1-2",
+        "probability": 1.7495907129308776,
+        "cumulative": 93.89706255220311
+      },
+      {
+        "score": "2-2",
+        "probability": 1.318733490528267,
+        "cumulative": 95.21579604273138
+      },
+      {
+        "score": "0-2",
+        "probability": 1.1599539734919606,
+        "cumulative": 96.37575001622335
+      },
+      {
+        "score": "4-1",
+        "probability": 0.8811352064227734,
+        "cumulative": 97.25688522264612
+      },
+      {
+        "score": "5-0",
+        "probability": 0.6745219818584997,
+        "cumulative": 97.93140720450462
+      },
+      {
+        "score": "3-2",
+        "probability": 0.4989140293355044,
+        "cumulative": 98.43032123384013
+      }
+    ],
+    "team_data": {
+      "home": {
+        "team": "Senegal",
+        "coach": "Aliou Ciss\u00e9",
+        "key_player": "Sadio Man\u00e9",
+        "style": "Balanced, high intensity"
+      },
+      "away": {
+        "team": "Botswana",
+        "coach": "Didier Gomes Da Rosa",
+        "key_player": "Thapelo Kopelang",
+        "style": "Low block, counter-attack"
+      }
+    }
+  },
+  "model_info": {
+    "name": "Optimized AFCON 2025 Predictor",
+    "version": "2.0",
+    "timestamp": "2025-12-23T17:39:36.669943"
+  }
+}

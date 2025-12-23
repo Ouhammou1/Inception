@@ -1,0 +1,190 @@
+{
+  "match_info": {
+    "home": "Congo DR",
+    "away": "Benin",
+    "venue": "Stade de Marrakech, Marrakech",
+    "date": "January 2025",
+    "time": "20:00 WET",
+    "stage": "Group Stage",
+    "temperature": 19,
+    "humidity": 60,
+    "altitude": 466
+  },
+  "prediction": {
+    "exact_score": "1-1",
+    "confidence": 15.1,
+    "expected_goals": {
+      "home": 1.37,
+      "away": 0.82
+    },
+    "outcome_probabilities": {
+      "home_win": 20.2,
+      "draw": 33.8,
+      "away_win": 46.0
+    },
+    "top_scores": [
+      {
+        "score": "1-1",
+        "probability": 15.092602604712136,
+        "cumulative": 15.092602604712136
+      },
+      {
+        "score": "0-0",
+        "probability": 14.746885239171911,
+        "cumulative": 29.839487843884047
+      },
+      {
+        "score": "1-0",
+        "probability": 14.127837708026528,
+        "cumulative": 43.96732555191058
+      },
+      {
+        "score": "2-0",
+        "probability": 9.770227887197487,
+        "cumulative": 53.73755343910806
+      },
+      {
+        "score": "2-1",
+        "probability": 8.03432362279845,
+        "cumulative": 61.77187706190651
+      },
+      {
+        "score": "0-1",
+        "probability": 7.8528543588316095,
+        "cumulative": 69.62473142073812
+      },
+      {
+        "score": "1-2",
+        "probability": 4.817956847380564,
+        "cumulative": 74.44268826811867
+      },
+      {
+        "score": "3-0",
+        "probability": 4.465956429293748,
+        "cumulative": 78.90864469741243
+      },
+      {
+        "score": "3-1",
+        "probability": 3.6724772085695476,
+        "cumulative": 82.58112190598197
+      },
+      {
+        "score": "0-2",
+        "probability": 3.513434512469092,
+        "cumulative": 86.09455641845106
+      },
+      {
+        "score": "2-2",
+        "probability": 3.4685922714486255,
+        "cumulative": 89.56314868989969
+      },
+      {
+        "score": "4-0",
+        "probability": 1.5310364603535747,
+        "cumulative": 91.09418515025327
+      }
+    ],
+    "score_matrix": [
+      [
+        0.1474688523917191,
+        0.0785285435883161,
+        0.03513434512469092,
+        0.009630641927903819,
+        0.0019798845747871674,
+        0.0003256225667053428
+      ],
+      [
+        0.14127837708026528,
+        0.15092602604712135,
+        0.04817956847380563,
+        0.013206455693579046,
+        0.002715006757708254,
+        0.00044652475216255843
+      ],
+      [
+        0.09770227887197487,
+        0.08034323622798449,
+        0.034685922714486256,
+        0.009054976464296193,
+        0.0018615382402264228,
+        0.0003061586859768506
+      ],
+      [
+        0.044659564292937486,
+        0.036724772085695474,
+        0.015099888524433773,
+        0.004345966886950285,
+        0.0008509063215617624,
+        0.00013994467353357082
+      ],
+      [
+        0.015310364603535747,
+        0.012590128442042766,
+        0.005176602200267911,
+        0.001418953505951191,
+        0.0003062965468755242,
+        4.7976374379017e-05
+      ],
+      [
+        0.004199006739172684,
+        0.0034529572315331065,
+        0.0014197302342441472,
+        0.00038916090428609283,
+        8.000439402422723e-05,
+        1.3815854865836633e-05
+      ]
+    ]
+  },
+  "team_analysis": {
+    "home": {
+      "fifa_rank": 62,
+      "elo": 1620,
+      "attack_strength": 1.32,
+      "defense_strength": 1.1,
+      "avg_goals": 1.45,
+      "xg_for": 1.55,
+      "form_score": 0.85,
+      "squad_value": 170,
+      "quality_index": 0.745,
+      "coach": "S\u00e9bastien Desabre",
+      "key_player": "Yoane Wissa",
+      "style": "Physical, direct",
+      "weakness": "Inconsistent finishing"
+    },
+    "away": {
+      "fifa_rank": 88,
+      "elo": 1520,
+      "attack_strength": 1.05,
+      "defense_strength": 1.12,
+      "avg_goals": 1.1,
+      "xg_for": 1.18,
+      "form_score": 0.45,
+      "squad_value": 50,
+      "quality_index": 0.503,
+      "coach": "Gernot Rohr",
+      "key_player": "Steve Mouni\u00e9",
+      "style": "Defensive, counter-attack",
+      "weakness": "Goal scoring"
+    }
+  },
+  "adjustments": {
+    "base_home_xg": 1.55,
+    "base_away_xg": 1.18,
+    "form_adjustment": 0.12000000000000002,
+    "quality_difference": 0.2419499999999999,
+    "tactical_advantage": 0.040999999999999995,
+    "context_advantage": 0.004999999999999893,
+    "depth_advantage": 0.038999999999999924,
+    "experience_advantage": -0.05600000000000005,
+    "injury_impact_home": 0.85,
+    "injury_impact_away": 0.8200000000000001
+  },
+  "model_info": {
+    "name": "Advanced Bivariate Poisson Model",
+    "version": "AFCON 2025 v2.0",
+    "avg_goals_afcon": 1.35,
+    "correlation_rho": -0.12,
+    "low_scoring_boost": 1.15,
+    "timestamp": "2025-12-23T17:40:19.470488"
+  }
+}
