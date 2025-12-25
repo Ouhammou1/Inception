@@ -52,6 +52,20 @@ services:
     networks:
       - inception
 
+
+
+  static_website:
+    restart: always
+    build: requirements/bonus/static_website
+    container_name : static_website
+    ports:
+      - "8081:80"
+    networks:
+      - inception
+
+
+
+
 networks:
   inception:
     driver: bridge

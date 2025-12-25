@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42 Network Portfolio - Student Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">AI & ML Developer</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#github">GitHub</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="heroCanvas"></canvas>
+    
+        <div class="hero-content">
+            <h1>BRAHIM OUHAMMOU</h1>
+            <h2>Student at 1337 Coding School/UM6P (42 Network) and AI & Machine Learning student at FS Tetouan </h2>
+            <p class="tagline">Python / C / C++ / System Programming / Problem Solving</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <canvas id="aboutCanvas"></canvas>
+        <h2>&lt;about_me /&gt;</h2>
+        <div class="about-content">
+            <div>
+                <p class="about-text">
+                    I'm an aspiring <strong style="color: var(--accent-green);">AI & ML Developer</strong> with a strong foundation 
+                    in programming, algorithms, and data-driven problem solving. Currently pursuing a Master's Degree in 
+                    <strong style="color: var(--accent-blue);">Artificial Intelligence and Machine Learning</strong> at the Faculty of Sciences, 
+                    Tetouan, while actively training at <strong style="color: var(--accent-green);">1337 Coding School (42 Network)</strong>.
+                </p>
+                
+                <p class="about-text" style="margin-top: 1rem;">
+                    I have hands-on experience working on <strong style="color: var(--accent-green);">AI and software development projects</strong>, 
+                    including <strong style="color: var(--accent-blue);">machine learning, deep learning, and computer vision</strong>. 
+                    I enjoy transforming ideas into practical solutions and building real-world applications using modern tools and frameworks.
+                </p>
+                
+                <p class="about-text" style="margin-top: 1rem;">
+                    With strong analytical skills, a collaborative mindset, and a continuous drive for learning emerging technologies, 
+                    I aim to leverage <strong style="color: var(--accent-green);">artificial intelligence and software engineering</strong> 
+                    to create <strong style="color: var(--accent-blue);">impactful, innovative solutions</strong> that improve real-world systems and processes.
+                </p>
+                
+                <div class="skills-list">
+                    <span class="skill-tag">C/C++ Programming</span>
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">AI & Machine Learning</span>
+                    <span class="skill-tag">Python & Deep Learning</span>
+                    <span class="skill-tag">System Programming</span>
+                    <span class="skill-tag">Algorithms & Data Structures</span>
+                    <!-- <span class="skill-tag">Full-Stack Development</span> -->
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Baccalaureate (2020)</h3>
+                    <p style="color: var(--text-secondary);">Baccalaureate in Physical Sciences, Seed Ben Elwaydan High School, Afourer, Azilal.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Bachelor's Degree (2020-2023)</h3>
+                    <p style="color: var(--text-secondary);">Bachelor's in Mathematical and Computer Sciences, Faculty of Multidisciplinary Studies, Sultan Moulay Slimane University.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>1337 Coding School (2023-2026)</h3>
+                    <p style="color: var(--text-secondary);">Software Development and Problem-Solving Training at 1337 (42 Network), Tetouan Shore. Completed multiple projects in C, C++, system programming, networking, and web development.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Bachelor's in AI & ML (2024-2025)</h3>
+                    <p style="color: var(--text-secondary);">Bachelor's Degree in Artificial Intelligence and Machine Learning, Faculty of Sciences, Tetouan. Exploring deep learning, computer vision, NLP, and data science.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Master's in AI & ML (2025-2027)</h3>
+                    <p style="color: var(--text-secondary);">Currently pursuing Master's Degree in Artificial Intelligence and Machine Learning, Faculty of Sciences, Tetouan. Exploring deep learning, computer vision, NLP, and data science.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+        <h2>&lt;projects  1337 Coding School /&gt;</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <h3>Libft</h3>
+                <p class="project-description">
+                    A custom C library implementing standard libc functions from scratch. Foundation project for all future 42 projects.
+                </p>
+                <p class="project-lang">Language: C</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Memory Allocation</span>
+                    <span class="concept-tag">String Manipulation</span>
+                    <span class="concept-tag">Linked Lists</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('libft')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <h3>Get_Next_Line</h3>
+                <p class="project-description">
+                    Function that reads a line from a file descriptor. Handles multiple file descriptors and buffer management.
+                </p>
+                <p class="project-lang">Language: C</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">File I/O</span>
+                    <span class="concept-tag">Static Variables</span>
+                    <span class="concept-tag">Buffer Management</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('gnl')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <h3>Push_swap</h3>
+                <p class="project-description">
+                    Sorting algorithm project using two stacks and a limited set of operations. Optimization challenge.
+                </p>
+                <p class="project-lang">Language: C</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Algorithms</span>
+                    <span class="concept-tag">Data Structures</span>
+                    <span class="concept-tag">Optimization</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('pushswap')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <h3>Minishell</h3>
+                <p class="project-description">
+                    Custom shell implementation with pipes, redirections, environment variables, and built-in commands.
+                </p>
+                <p class="project-lang">Language: C</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Parsing</span>
+                    <span class="concept-tag">Process Management</span>
+                    <span class="concept-tag">Signal Handling</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('minishell')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card">
+                <h3>Philosophers</h3>
+                <p class="project-description">
+                    Classic dining philosophers problem solved with threads and mutexes. Concurrency and synchronization challenge.
+                </p>
+                <p class="project-lang">Language: C</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Multithreading</span>
+                    <span class="concept-tag">Mutexes</span>
+                    <span class="concept-tag">Deadlock Prevention</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('philosophers')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card">
+                <h3>Cub3D</h3>
+                <p class="project-description">
+                    3D game engine inspired by Wolfenstein 3D. Raycasting, texture mapping, and real-time rendering.
+                </p>
+                <p class="project-lang">Language: C</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Raycasting</span>
+                    <span class="concept-tag">Graphics</span>
+                    <span class="concept-tag">Game Development</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('cub3d')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-card">
+                <h3>CPP Modules</h3>
+                <p class="project-description"> 
+                    Series of C++ exercises covering OOP fundamentals, inheritance, polymorphism, templates, and STL containers.
+                </p>
+                <p class="project-lang">Language: C++</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">OOP</span>
+                    <span class="concept-tag">Templates</span>
+                    <span class="concept-tag">STL</span>
+                    <span class="concept-tag">Polymorphism</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('cpp')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-card">
+                <h3>NetPractice</h3>
+                <p class="project-description">
+                    Network configuration exercises. Learn TCP/IP addressing, subnetting, routing tables, and network troubleshooting.
+                </p>
+                <p class="project-lang">Concepts: Networking</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">TCP/IP</span>
+                    <span class="concept-tag">Subnetting</span>
+                    <span class="concept-tag">Routing</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('netpractice')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="project-card">
+                <h3>Inception</h3>
+                <p class="project-description">
+                    System administration project using Docker. Set up a multi-container infrastructure with NGINX, WordPress, and MariaDB.
+                </p>
+                <p class="project-lang">Tools: Docker, Docker Compose</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Docker</span>
+                    <span class="concept-tag">Containerization</span>
+                    <span class="concept-tag">System Admin</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('inception')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 10 -->
+            <div class="project-card">
+                <h3>ft_irc</h3>
+                <p class="project-description">
+                    IRC (Internet Relay Chat) server implementation. Handle multiple clients, channels, and IRC protocol commands.
+                </p>
+                <p class="project-lang">Language: C++</p>
+                <div class="project-concepts">
+                    <span class="concept-tag">Network Sockets</span>
+                    <span class="concept-tag">I/O Multiplexing</span>
+                    <span class="concept-tag">IRC Protocol</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                    <button class="btn btn-small btn-secondary" onclick="openModal('ftirc')">Project Details</button>
+                </div>
+            </div>
+
+            <!-- Project 11 -->
+   <!-- Project 11 - Updated version -->
+        <div class="project-card">
+            <h3>ft_transcendence</h3>
+            <p class="project-description">
+                Enhanced full-stack Pong platform with integrated AI capabilities including human-like game opponent, 
+                RAG system for intelligent support, LLM interface, and ML-based recommendation system.
+            </p>
+            <p class="project-lang">Python</p>
+            <div class="project-concepts">
+                <span class="concept-tag">Game AI</span>
+                <span class="concept-tag">RAG System</span>
+                <span class="concept-tag">LLM Integration</span>
+                <span class="concept-tag">Real-time AI</span>
+            </div>
+            <div class="project-buttons">
+                <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                <button class="btn btn-small btn-secondary" onclick="openModal('transcendence_ai')">AI Module Details</button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- AI Projects Section -->
+<!-- AI Projects Section -->
+<section id="projects_ai" class="fade-in">
+    <h2>&lt;projects  AI & Machine Learning /&gt;</h2>
+    <div class="projects-grid">
+        <!-- Project 1: Medicinal Plant Classifier -->
+        <div class="project-card">
+            <h3>Medicinal Plant CNN Classifier</h3>
+            <p class="project-description">
+                Deep learning system for identifying medicinal plants from images using CNN architecture.
+                Classifies plant species based on leaf/plant photos with high accuracy for botanists and researchers.
+            </p>
+            <p class="project-lang">Python, TensorFlow, CNN, OpenCV, Scikit-learn</p>
+            <div class="project-concepts">
+                <span class="concept-tag">Computer Vision</span>
+                <span class="concept-tag">CNN</span>
+                <span class="concept-tag">Image Classification</span>
+                <span class="concept-tag">Transfer Learning</span>
+                <span class="concept-tag">Data Augmentation</span>
+            </div>
+            <div class="project-buttons">
+                <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                <button class="btn btn-small btn-secondary" onclick="openModal('medicinal_plant')">Project Details</button>
+            </div>
+        </div>
+
+        <!-- Project 2: SafeVision Helmet Detection -->
+        <div class="project-card">
+            <h3>SafeVision – Industrial Helmet Detection</h3>
+            <p class="project-description">
+                Real-time computer vision system using YOLOv8 for detecting safety helmets in industrial environments.
+                Optimized for workplace safety monitoring with quick training and real-time inference.
+            </p>
+            <p class="project-lang">Python, YOLOv8, OpenCV, PyTorch, Ultralytics</p>
+            <div class="project-concepts">
+                <span class="concept-tag">Object Detection</span>
+                <span class="concept-tag">YOLOv8</span>
+                <span class="concept-tag">Real-time</span>
+                <span class="concept-tag">Workplace Safety</span>
+                <span class="concept-tag">Computer Vision</span>
+            </div>
+            <div class="project-buttons">
+                <a href="https://github.com/Ouhammou1" class="btn btn-small" target="_blank">View Code</a>
+                <button class="btn btn-small btn-secondary" onclick="openModal('safevision')">Project Details</button>
+            </div>
+        </div>
+        <!-- Add this to your projects_ai section -->
+        <div class="project-card">
+            <h3>Become an AI Researcher Course</h3>
+            <p class="project-description">
+                Comprehensive self-study curriculum covering mathematical foundations, PyTorch implementation, 
+                neural networks built from scratch, and modern LLM architectures including Transformers.
+            </p>
+            <p class="project-lang">Python • PyTorch • NumPy • Linear Algebra • Jupyter</p>
+            <div class="project-concepts">
+                <span class="concept-tag">LLM Foundations</span>
+                <span class="concept-tag">Mathematical Core</span>
+                <span class="concept-tag">PyTorch Mastery</span>
+                <span class="concept-tag">Neural Networks</span>
+                <span class="concept-tag">Transformer Architecture</span>
+
+            </div>
+            <div class="project-buttons">
+                <a href="https://github.com/Ouhammou1/AI-Researcher" class="btn btn-small" target="_blank">View Repository</a>
+                <button class="btn btn-small btn-secondary" onclick="openModal('ai_researcher_course')">Course Details</button>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+        <h2>&lt;skills /&gt;</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <ul>
+                    <li>C (Advanced)</li>
+                    <li>C++ (Advanced)</li>
+                    <li>Python (Advanced)</li>
+                    <li>TypeScript (Intermediate)</li>
+                    <li>Shell Scripting (Bash)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>AI & Machine Learning</h3>
+                <ul>
+                    <li>TensorFlow & Keras</li>
+                    <li>Scikit-learn</li>
+                    <li>Neural Networks</li>
+                    <li>Computer Vision (OpenCV)</li>
+                    <li>Natural Language Processing</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Data Science</h3>
+                <ul>
+                    <li>NumPy & Pandas</li>
+                    <li>Matplotlib & Seaborn</li>
+                    <li>Data Preprocessing</li>
+                    <li>Statistical Analysis</li>
+                    <li>Model Evaluation</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Core Concepts</h3>
+                <ul>
+                    <li>Pointers & Memory Management</li>
+                    <li>Data Structures & Algorithms</li>
+                    <li>Object-Oriented Programming</li>
+                    <li>Multithreading & Concurrency</li>
+                    <li>Network Programming</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Web & DevOps</h3>
+                <ul>
+                    <li>MariaDB</li>
+                    <li>WebSockets & Real-time</li>
+                    <li>Docker Containerization</li>
+                    <li>NGINX Configuration</li>
+                    <!-- <li>CI/CD Pipelines</li> -->
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Networking</h3>
+                <ul>
+                    <li>TCP/IP & Subnetting</li>
+                    <li>Socket Programming</li>
+                    <li>IRC Protocol</li>
+                    <li>HTTP/HTTPS</li>
+                    <!-- <li>Network Security</li> -->
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>42 Tools & Standards</h3>
+                <ul>
+                    <li>Norminette</li>
+                    <li>Makefile</li>
+                    <!-- <li>Valgrind</li>
+                    <li>GDB Debugger</li> -->
+                    <li>Docker & Docker Compose</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Development Tools</h3>
+                <ul>
+                    <li>Git & GitHub</li>
+                    <li>Unix/Linux Systems</li>
+                    <li>VS Code / Vim</li>
+                    <li>Jupyter Notebooks</li>
+                    <!-- <li>API Testing</li> -->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section id="github" class="fade-in">
+        <h2>&lt;github /&gt;</h2>
+        <div class="github-content">
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Check out my complete project portfolio on GitHub</p>
+            <div class="github-username">@Ouhammou1</div>
+            <a href="https://github.com/Ouhammou1" class="btn" target="_blank" style="margin-top: 1rem;">View Full Profile</a>
+            
+            <div class="github-stats" id="githubStats">
+                <div class="stat-card">
+                    <h4 id="repoCount">25+</h4>
+                    <p>Public Repositories</p>
+                </div>
+                <div class="stat-card">
+                    <h4>16+</h4>
+                    <p>42 Projects Completed</p>
+                </div>
+                <div class="stat-card">
+                    <h4>200+</h4>
+                    <p>Contributions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2>&lt;contact /&gt;</h2>
+        <div class="contact-content">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="form-error" id="nameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="form-error" id="emailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <span class="form-error" id="messageError"></span>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <div class="email-copy">
+                        <input type="text" value="brahimouhammou13@gmail.com" readonly id="emailText">
+                        <button class="copy-btn" onclick="copyEmail()">Copy</button>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="https://github.com/Ouhammou1" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/brahim-ouhammou-235b5330a/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/Ouhammou1/Ouhammou1/tree/main?tab=readme-ov-file" target="_blank">42 Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 BRAHIM OUHAMMOU | 42 Network Student | Built with HTML, CSS & JavaScript</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Coded with ☕ and passion for low-level programming</p>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h3 id="modalTitle"></h3>
+            
+            <div class="modal-section">
+                <h4>Project Objectives</h4>
+                <p id="modalObjectives"></p>
+            </div>
+            
+            <div class="modal-section">
+                <h4>Technical Challenges</h4>
+                <ul id="modalChallenges"></ul>
+            </div>
+            
+            <div class="modal-section">
+                <h4>What I Learned</h4>
+                <ul id="modalLearned"></ul>
+            </div>
+            
+            <div class="screenshot-placeholder">
+                [Project Screenshot Placeholder]
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
