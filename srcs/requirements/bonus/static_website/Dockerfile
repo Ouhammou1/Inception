@@ -1,6 +1,6 @@
 FROM  debian:12
  
-RUN apt update && apt install -y nginx 
+RUN apt update && apt install -y nginx && rm -rf /var/lib/apt/lists/*
 
 
 COPY index.html    /var/www/html/index.html
