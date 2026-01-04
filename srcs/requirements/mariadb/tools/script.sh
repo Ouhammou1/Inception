@@ -1,21 +1,21 @@
 #!/bin/sh
 set -e
 
-chown -R mysql:mysql /var/lib/mysql
+chown -R mysql:mysql /var/lib/mysql 
 chown -R mysql:mysql /run/mysqld
 
-# Initialize database if needed
+
 if [ ! -d "/var/lib/mysql/mysql" ]; then
+
     echo "Initializing MariaDB data directory..."
-    mysql_install_db --user=mysql --datadir=/var/lib/mysql
-    
+    mysql_install_db  --user=mysql --datadir=/var/lib/mysql
+
     echo "Starting temporary MariaDB instance..."
-    mysqld --user=mysql --datadir=/var/lib/mysql --skip-networking &
-    pid="$!"
-    
-    # Wait for server to start
-    for i in $(seq 30); do
-        if mysqladmin ping --silent 2>/dev/null; then
+    mysqld --user=mysql --datadir=/var/lib/mysql --skip-networking & pid="$!"
+
+
+    for i in $(seq 30); do 
+        if mysqladmin ping  --silent 2>/dev/null; then
             break
         fi
         sleep 1
@@ -29,11 +29,10 @@ GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 FLUSH PRIVILEGES;
 EOF
-    
     echo "Shutting down temporary instance..."
-    mysqladmin -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
+    mysqladmin -u root -p "${MYSQL_ROOT_PASSWORD}" shutdown
     wait "$pid"
-    
+
     echo "Database initialization complete!"
 fi
 

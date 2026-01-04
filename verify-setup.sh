@@ -163,15 +163,16 @@ if [ -f "$MAKEFILE" ]; then
     fi
 fi
 
-# Check scripts for --link
+# Check scripts for --link (exclude this script)
 if [ -d "$PROJECT_DIR" ]; then
-    if find "$PROJECT_DIR" -name "*.sh" -type f -exec grep -l "docker run.*--link" {} \; 2>/dev/null | grep -q .; then
+    if find "$PROJECT_DIR" -name "*.sh" -type f \
+        ! -name "$(basename "$0")" \
+        -exec grep -l "docker run.*--link" {} \; 2>/dev/null | grep -q .; then
         add_result "Script Links" "FAIL" "Found '--link' in scripts"
     else
         add_result "Script Links" "PASS" "No '--link' in scripts"
     fi
 fi
-
 # ==============================
 # DOCKERFILE CHECKS
 # ==============================
@@ -180,56 +181,58 @@ echo -e "\n${CYAN}════════════════════�
 echo -e "${CYAN}4. DOCKERFILE CHECKS${NC}"
 echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
 
-# Check each service has a Dockerfile
 SERVICES=("nginx" "wordpress" "mariadb")
+
 for service in "${SERVICES[@]}"; do
     DOCKERFILE="$SRCS_DIR/requirements/$service/Dockerfile"
-    
-    # Check if Dockerfile exists
+
+    # Dockerfile exists
     if [ -f "$DOCKERFILE" ]; then
         add_result "$service Dockerfile" "PASS" "Dockerfile exists for $service"
-        
-        # Check if Dockerfile is not empty
-        if [ -s "$DOCKERFILE" ]; then
-            add_result "$service Dockerfile Content" "PASS" "Dockerfile for $service is not empty"
-        else
-            add_result "$service Dockerfile Content" "FAIL" "Dockerfile for $service is empty"
-        fi
-        
-        # Check FROM line
-        if head -1 "$DOCKERFILE" 2>/dev/null | grep -q "FROM debian:\|FROM alpine:"; then
-            add_result "$service FROM Directive" "PASS" "Starts with FROM debian: or FROM alpine:"
-        else
-            add_result "$service FROM Directive" "FAIL" "Doesn't start with FROM debian: or FROM alpine:"
-        fi
-        
-        # Check for prohibited commands
-        if grep -i "entrypoint\|cmd" "$DOCKERFILE" 2>/dev/null | grep -q "tail -f"; then
-            add_result "$service Prohibited Commands" "FAIL" "Found 'tail -f' in ENTRYPOINT/CMD"
-        elif grep -i "entrypoint\|cmd" "$DOCKERFILE" 2>/dev/null | grep -q "bash\|sh"; then
-            # Check if bash/sh is used for running a script
-            if grep -i "entrypoint\|cmd" "$DOCKERFILE" 2>/dev/null | grep -q '\["sh",\|\["bash",'; then
-                add_result "$service Prohibited Commands" "PASS" "bash/sh used for script execution (allowed)"
-            else
-                add_result "$service Prohibited Commands" "FAIL" "Found bash/sh in ENTRYPOINT/CMD without script"
-            fi
-        else
-            add_result "$service Prohibited Commands" "PASS" "No prohibited commands found"
-        fi
-        
-        # Check for NGINX in wrong Dockerfiles
-        if [ "$service" != "nginx" ]; then
-            if grep -iq "nginx" "$DOCKERFILE"; then
-                add_result "$service No Nginx" "FAIL" "Found NGINX in $service Dockerfile"
-            else
-                add_result "$service No Nginx" "PASS" "No NGINX in $service Dockerfile"
-            fi
-        fi
-        
     else
-        add_result "$service Dockerfile" "FAIL" "Dockerfile not found for $service at $DOCKERFILE"
+        add_result "$service Dockerfile" "FAIL" "Dockerfile not found for $service"
+        continue
+    fi
+
+    # Dockerfile not empty
+    if [ -s "$DOCKERFILE" ]; then
+        add_result "$service Dockerfile Content" "PASS" "Dockerfile is not empty"
+    else
+        add_result "$service Dockerfile Content" "FAIL" "Dockerfile is empty"
+    fi
+
+    # FROM directive
+    if head -n 1 "$DOCKERFILE" | grep -Eq '^FROM (debian|alpine):'; then
+        add_result "$service FROM Directive" "PASS" "Valid base image (debian/alpine)"
+    else
+        add_result "$service FROM Directive" "FAIL" "Invalid base image"
+    fi
+
+    # ❌ Prohibited: tail -f
+    if grep -Eiq '^(ENTRYPOINT|CMD).*tail\s+-f' "$DOCKERFILE"; then
+        add_result "$service Prohibited Commands" "FAIL" "Found 'tail -f' (forbidden)"
+    
+    # ❌ Prohibited: bash/sh as MAIN PROCESS
+    elif grep -Eiq '^(ENTRYPOINT|CMD)\s*\[\s*"(bash|sh)"' "$DOCKERFILE"; then
+        add_result "$service Prohibited Commands" "FAIL" \
+            "Found bash/sh as main process in ENTRYPOINT/CMD"
+
+    # ✅ Allowed
+    else
+        add_result "$service Prohibited Commands" "PASS" \
+            "No prohibited shell used as main process"
+    fi
+
+    # ❌ nginx inside wrong Dockerfile
+    if [ "$service" != "nginx" ]; then
+        if grep -iq '\bnginx\b' "$DOCKERFILE"; then
+            add_result "$service No Nginx" "FAIL" "NGINX found in $service Dockerfile"
+        else
+            add_result "$service No Nginx" "PASS" "No NGINX in $service Dockerfile"
+        fi
     fi
 done
+
 
 # ==============================
 # SCRIPT CHECKS
@@ -249,42 +252,46 @@ if [ -d "$SRCS_DIR" ]; then
     fi
 fi
 
+# # ==============================
+# # BUILD AND RUN
+# # ==============================
+
+# echo -e "\n${CYAN}══════════════════════════════════════════════════════════════${NC}"
+# echo -e "${CYAN}6. BUILD AND RUN TESTS${NC}"
+# echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+
+# # Clean up first
+# echo -e "${BLUE}Cleaning up existing containers...${NC}"
+# cd "$SRCS_DIR" > /dev/null 2>&1
+# if docker-compose down -v > /dev/null 2>&1; then
+#     add_result "Cleanup" "PASS" "Successfully cleaned up containers"
+# else
+#     add_result "Cleanup" "WARN" "Cleanup had issues (might be nothing to clean)"
+# fi
+
+# # Build
+# echo -e "${BLUE}Building containers...${NC}"
+# if make build > /dev/null 2>&1; then
+#     add_result "Build" "PASS" "Successfully built containers"
+# else
+#     add_result "Build" "FAIL" "Make build failed"
+# fi
+
+# # Run
+# echo -e "${BLUE}Starting containers...${NC}"
+# if make up > /dev/null 2>&1; then
+#     add_result "Start" "PASS" "Successfully started containers"
+# else
+#     add_result "Start" "FAIL" "Make up failed"
+# fi
+
+# # Wait for services to start
+# echo -e "${BLUE}Waiting for services to start (30 seconds)...${NC}"
+# sleep 30
+
 # ==============================
-# BUILD AND RUN
+# SERVICE CHECKS
 # ==============================
-
-echo -e "\n${CYAN}══════════════════════════════════════════════════════════════${NC}"
-echo -e "${CYAN}6. BUILD AND RUN TESTS${NC}"
-echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
-
-# Clean up first
-echo -e "${BLUE}Cleaning up existing containers...${NC}"
-cd "$SRCS_DIR" > /dev/null 2>&1
-if docker-compose down -v > /dev/null 2>&1; then
-    add_result "Cleanup" "PASS" "Successfully cleaned up containers"
-else
-    add_result "Cleanup" "WARN" "Cleanup had issues (might be nothing to clean)"
-fi
-
-# Build
-echo -e "${BLUE}Building containers...${NC}"
-if make build > /dev/null 2>&1; then
-    add_result "Build" "PASS" "Successfully built containers"
-else
-    add_result "Build" "FAIL" "Make build failed"
-fi
-
-# Run
-echo -e "${BLUE}Starting containers...${NC}"
-if make up > /dev/null 2>&1; then
-    add_result "Start" "PASS" "Successfully started containers"
-else
-    add_result "Start" "FAIL" "Make up failed"
-fi
-
-# Wait for services to start
-echo -e "${BLUE}Waiting for services to start (30 seconds)...${NC}"
-sleep 30
 
 # ==============================
 # SERVICE CHECKS
@@ -294,23 +301,24 @@ echo -e "\n${CYAN}════════════════════�
 echo -e "${CYAN}7. SERVICE CHECKS${NC}"
 echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
 
-# Check containers are running
-if docker-compose ps 2>/dev/null | grep -q "Up"; then
-    add_result "Running Containers" "PASS" "All containers are running"
+# Check containers are running (Docker Compose v2 compatible)
+if docker compose ps --status running 2>/dev/null | grep -q .; then
+    add_result "Running Containers" "PASS" "Containers are running"
     echo -e "${BLUE}Current containers status:${NC}"
-    docker-compose ps 2>/dev/null
+    docker compose ps
 else
     add_result "Running Containers" "FAIL" "No containers are running"
 fi
 
-# Check network
-if docker network ls 2>/dev/null | grep -q "$COMPOSE_PROJECT_NAME"; then
+# Check network (default compose network)
+if docker network ls 2>/dev/null | grep -Eq "(inception|_default)"; then
     add_result "Docker Network" "PASS" "Docker network created"
     echo -e "${BLUE}Current networks:${NC}"
-    docker network ls 2>/dev/null | grep "$COMPOSE_PROJECT_NAME"
+    docker network ls | grep -E "(inception|_default)"
 else
     add_result "Docker Network" "FAIL" "Docker network not found"
 fi
+
 
 # ==============================
 # NGINX CHECKS

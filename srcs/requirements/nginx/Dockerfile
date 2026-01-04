@@ -12,6 +12,8 @@ RUN  openssl req -x509  -nodes -days 365 \
     -subj "/C=MA/ST=TE/L=TE/O=1337/OU=student/CN=bouhammo.42.fr"
 
 
+
+RUN rm -rf /etc/nginx/sites-enabled/default
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 
