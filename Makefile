@@ -21,19 +21,18 @@ add_host:
 
 
 create_volumes:
+	@sudo mkdir -p $(DATA_DIR)
+	@sudo chown -R 1000:1000 $(DATA_DIR)
 	@sudo mkdir -p $(DATA_DIR)/wp
 	@sudo mkdir -p $(DATA_DIR)/maria
 	@sudo chown -R 1000:1000 $(DATA_DIR)/wp
-	@sudo chown -R 999:999 $(DATA_DIR)/maria
-	@sudo chmod -R 755 $(DATA_DIR)/wp
+	@sudo chown -R 1000:1000 $(DATA_DIR)/maria
 
 
 
 up:
-	$(DC) -f $(FILE) up -d
+	$(DC) -f $(FILE) up  --build -d
 
-build:
-	$(DC) -f $(FILE) up --build -d
 
 down:
 	$(DC) -f $(FILE) down -v

@@ -60,6 +60,8 @@ networks:
   inception:
     driver: bridge
 
+
+
 volumes:
   mariadb_data:
     name: mariadb_data
@@ -75,5 +77,3 @@ volumes:
       type: none
       o: bind
       device: /home/bouhammo/data/wp
-
-

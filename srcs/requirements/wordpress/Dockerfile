@@ -26,5 +26,5 @@ COPY tools/script.sh /script.sh
 
 RUN chmod +x /script.sh
 
+EXPOSE 9000
 ENTRYPOINT ["/script.sh"]
-CMD ["php-fpm8.2", "-F"]

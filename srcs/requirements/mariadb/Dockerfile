@@ -1,6 +1,5 @@
 FROM debian:12
 
-
 RUN apt-get update -y && \
     apt-get install -y mariadb-server && \
     apt-get clean && \
