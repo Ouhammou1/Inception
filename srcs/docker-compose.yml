@@ -8,7 +8,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /home/bouhammo/data/wp:/var/www/html
+      - wordpress_data:/var/www/html
     networks:
       - inception
     depends_on:
@@ -21,7 +21,7 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     volumes:
-      - /home/bouhammo/data/wp:/var/www/html
+      - wordpress_data:/var/www/html
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -46,7 +46,7 @@ services:
     build: requirements/mariadb
     container_name: mariadb
     volumes:
-      - /home/bouhammo/data/maria:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -59,5 +59,21 @@ services:
 networks:
   inception:
     driver: bridge
+
+volumes:
+  mariadb_data:
+    name: mariadb_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/bouhammo/data/maria
+  wordpress_data:
+    name: wordpress_data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/bouhammo/data/wp
 
 

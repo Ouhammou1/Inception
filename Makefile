@@ -33,7 +33,7 @@ up:
 	$(DC) -f $(FILE) up -d
 
 build:
-	$(DC) -f $(FILE) up --build #-d
+	$(DC) -f $(FILE) up --build -d
 
 down:
 	$(DC) -f $(FILE) down -v

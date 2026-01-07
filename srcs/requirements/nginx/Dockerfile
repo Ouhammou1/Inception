@@ -17,4 +17,4 @@ RUN rm -rf /etc/nginx/sites-enabled/default
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 
-CMD ["nginx" , "-g" , "daemon off;"]
+CMD ["nginx" , "-g" , "daemon off;"]  
