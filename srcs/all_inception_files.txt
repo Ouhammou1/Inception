@@ -1,0 +1,3 @@
+docker compose down -v
+sudo rm -rf /home/bouhammo/data/*
+make

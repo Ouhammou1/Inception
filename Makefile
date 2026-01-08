@@ -9,7 +9,7 @@ HOSTNAME = bouhammo.42.fr
 HOSTS_LINE = 127.0.0.1   $(HOSTNAME)
 
 
-all: add_host create_volumes   up 
+all: create_volumes add_host  up 
 
 add_host:
 	@if grep -q "$(HOSTNAME)" /etc/hosts; then \
@@ -21,17 +21,16 @@ add_host:
 
 
 create_volumes:
-	@sudo mkdir -p $(DATA_DIR)
-	@sudo chown -R 1000:1000 $(DATA_DIR)
 	@sudo mkdir -p $(DATA_DIR)/wp
 	@sudo mkdir -p $(DATA_DIR)/maria
+	@sudo chown -R 999:999 $(DATA_DIR)/maria
 	@sudo chown -R 1000:1000 $(DATA_DIR)/wp
-	@sudo chown -R 1000:1000 $(DATA_DIR)/maria
+
 
 
 
 up:
-	$(DC) -f $(FILE) up  --build -d
+	$(DC) -f $(FILE) up  --build #-d
 
 
 down:
@@ -55,8 +54,8 @@ ps:
 
 clean:
 	$(DC) -f $(FILE) down -v
-	@sudo rm -rf $(DATA_DIR)/maria
-	@sudo rm -rf $(DATA_DIR)/wp
+	@sudo rm -rf $(DATA_DIR)/*
 
 
-re: clean build
+
+re: clean up
