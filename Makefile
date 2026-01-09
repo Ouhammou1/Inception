@@ -30,11 +30,11 @@ create_volumes:
 
 
 up:
-	$(DC) -f $(FILE) up  --build #-d
+	$(DC) -f $(FILE) up  --build -d
 
 
 down:
-	$(DC) -f $(FILE) down -v
+	$(DC) -f $(FILE) down 
 
 start:
 	$(DC) -f $(FILE) start
@@ -43,14 +43,14 @@ stop:
 	$(DC) -f $(FILE) stop
 
 restart:
-	$(DC) -f $(FILE) down -v
-	$(DC) -f $(FILE) up -d
+	$(DC) -f $(FILE) down -v 
+	$(DC) -f $(FILE) up  --build -d
 
 logs:
 	$(DC) -f $(FILE) logs -f
 
 ps:
-	$(DC) -f $(FILE) ps
+	$(DC) -f $(FILE) ps -a
 
 clean:
 	$(DC) -f $(FILE) down -v

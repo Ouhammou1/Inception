@@ -5,7 +5,7 @@ chown -R mysql:mysql /var/lib/mysql
 chown -R mysql:mysql /run/mysqld
 
 
-if [ ! -f "/var/lib/mysql/mysql/.initialized" ]; then
+if [ ! -f "/var/lib/mysql/.initialized" ]; then
 
     echo "Initializing MariaDB data directory..."
     mysql_install_db  --user=mysql --datadir=/var/lib/mysql
@@ -29,6 +29,7 @@ GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 FLUSH PRIVILEGES;
 EOF
+
     echo "Shutting down temporary instance..."
     mysqladmin -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
     wait "$pid"
