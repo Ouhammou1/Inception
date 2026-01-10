@@ -64,7 +64,7 @@ WP_USER_PASSWORD=
 1 To build and start all services:
 
 ```bash
-make build
+make
 ```
 2 To stop the services:
 

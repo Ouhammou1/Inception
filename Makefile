@@ -30,7 +30,7 @@ create_volumes:
 
 
 up:
-	$(DC) -f $(FILE) up  --build -d
+	$(DC) -f $(FILE) up  --build g-d
 
 
 down:

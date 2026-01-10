@@ -31,7 +31,7 @@ To start the project, make sure you are in the root directory of the repository.
 1 Build and launch all services:
 
 ```bash
-make build
+make 
 ```
 ## Stopping the Project
 1 To stop the services:
@@ -67,17 +67,26 @@ https://bouhammo.42.fr/wp-admin
 
 ## Managing Credentials
 
-All credentials are stored in the .env file located at the root of the project.
+1 All credentials are stored in the .env file located at the root of the project.
 
 This file contains:
 
-Database credentials
+- Database credentials
 
-WordPress administrator credentials
+- WordPress administrator credentials
 
-WordPress user credentials
+- WordPress user credentials
 
+2 To change credentials:
 
+- Edit the .env file
+
+- Restart the project using:
+```bash
+make down
+make
+
+```
 ## Checking Service Status
 
 1 To check if the services are running correctly:

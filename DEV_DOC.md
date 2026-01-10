@@ -49,38 +49,66 @@ Domain configuration
 
 
 ## Building and Launching the Project
-1 To build Docker images and start all services:
+1 Explained in Building and Launching the Project:
 
 ```bash
-make build
+make
 ```
-2 To stop the services:
+This command:
 
+- Builds Docker images
+
+- Creates networks and volumes
+
+- Launches all services using Docker Compose
+
+
+2 Stopping and cleaning:
 ```bash
 make down
-```
-
-3 clean the environment:
-```bash
 make clean
 ```
 
-## Container and Volume Management
+## Use relevant commands to manage containers and volumes
 
-1 List Running Containers
+### Container Management
 
+1 Explained in Container Management:
+- List containers:
 ```bash
 make ps
 ```
 
-2 Access a Container
+- Access a Container
 ```bash
 docker exec -it <container_name> bash
 ```
 
-## Data Storage and Persistence
-1 Volumes are managed automatically by Docker and can be listed with:
-
+### Volume Management
+1 Explained in Volume Management:
+- List volumes:
 ```bash
 docker volume ls
+```
+
+- Inspect volume:
+```bash
+docker volume inspect <volume_name>
+```
+- Remove volumes:
+```bash
+docker volume prune
+```
+
+
+## Identify where project data is stored and how it persists
+Explained in Volume Management
+- MariaDB data:
+```bash
+/var/lib/mysql
+```
+- WordPress data:
+
+```bash
+/var/www/html
 ```

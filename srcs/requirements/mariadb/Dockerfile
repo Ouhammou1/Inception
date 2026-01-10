@@ -15,4 +15,3 @@ RUN chmod +x /script.sh
 EXPOSE 3306
 
 ENTRYPOINT ["/script.sh"]
-CMD ["mysqld"]
